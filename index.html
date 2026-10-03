@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angel's Portfolio</title>
+<meta name="description" content="My world, from different angles. A private digital exhibition by Angel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,400&family=Hanken+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0a12;
+  --gold:#c9a96e;
+  --sky:#9cc3e6;
+  --silver:#bfc3ce;
+  --ink:#ece6d8;          /* ivory */
+  --mute:#8d8a94;         /* silver-grey */
+  --line:rgba(236,230,216,.14);
+  --lav:#a89bcb;          /* muted lavender accent */
+  --purple:#b4a0ea;
+  --serif:"Bodoni Moda","Didot","Playfair Display",Georgia,serif;
+  --sans:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(1.25rem,4vw,4rem);
+  --ease:cubic-bezier(.22,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:1px solid var(--lav);outline-offset:4px}
+::selection{background:var(--lav);color:var(--bg)}
+
+/* colour atmosphere: lavender, light blue, gold, silver glows */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(60vw 55vh at 10% 6%,rgba(168,155,203,.26),transparent 70%),
+  radial-gradient(50vw 50vh at 92% 24%,rgba(156,195,230,.18),transparent 70%),
+  radial-gradient(55vw 50vh at 80% 82%,rgba(201,169,110,.16),transparent 70%),
+  radial-gradient(48vw 48vh at 6% 90%,rgba(191,195,206,.14),transparent 70%),
+  var(--bg)}
+
+/* grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* top bar */
+.bar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;padding:1.4rem var(--pad);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);mix-blend-mode:difference}
+
+/* hero */
+.hero{position:relative;min-height:87vh;min-height:87svh;display:grid;grid-template-columns:1.12fr 1fr;align-items:end;gap:clamp(2rem,5vw,6rem);padding:6.75rem var(--pad) clamp(2.5rem,6.5vh,5rem);overflow:hidden}
+.hero-line{position:absolute;left:-10%;top:0;width:130%;height:0;transform-origin:0 0;transform:rotate(-14deg) translateY(50vh);pointer-events:none}
+.hero-line .stroke{position:absolute;left:0;top:-1px;width:100%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--lav) 12%,var(--gold) 85%,rgba(201,169,110,.5));opacity:.75;clip-path:inset(-4px 100% -4px 0);animation:paint 2.8s cubic-bezier(.5,0,.3,1) .6s forwards}
+@keyframes paint{to{clip-path:inset(-4px 0 -4px 0)}}
+.brush-track{position:absolute;top:0;left:0;width:0;height:0;animation:trackmove 2.8s cubic-bezier(.5,0,.3,1) .6s forwards}
+@keyframes trackmove{to{left:100%}}
+.brush{position:absolute;left:0;top:50%;width:150px;height:47px;margin-top:-23.5px;transform-origin:0 50%;transform:rotate(-22deg);opacity:0;animation:brushfade 2.8s linear .6s forwards;filter:drop-shadow(0 2px 4px rgba(0,0,0,.45))}
+@keyframes brushfade{0%{opacity:0}6%{opacity:1}85%{opacity:1}100%{opacity:0}}
+.hero-title{font-family:var(--serif);font-weight:700;font-size:clamp(3.2rem,9.2vw,8.6rem);line-height:.86;letter-spacing:-.03em;text-transform:uppercase;position:relative}
+.mask{display:block;overflow:hidden;padding-bottom:.04em}
+.mask>span{display:block;transform:translateY(105%);animation:rise 1.4s var(--ease) forwards}
+.mask:nth-child(2)>span{animation-delay:.12s;font-style:italic;font-weight:400;padding-left:.9em;color:var(--lav)}
+.mask:nth-child(3)>span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.hero-side{text-align:right;justify-self:end;max-width:34rem;opacity:0;transform:translateY(14px);animation:fade 1.6s var(--ease) .9s forwards;padding-bottom:.6rem}
+@keyframes fade{to{opacity:1;transform:none}}
+.hero-side h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.6vw,4.2rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:1.6rem}
+.hero-side h2 em{font-style:normal;color:var(--purple)}
+.hero-side p{color:#a6a3ae;font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.65;padding-top:1.5rem;border-top:1px solid var(--line)}
+
+/* gallery */
+.gallery{display:flex;flex-direction:column;align-items:center;gap:clamp(3.5rem,9vh,6.5rem);padding:clamp(3rem,8vh,6rem) var(--pad) clamp(5rem,12vh,9rem)}
+.row{display:flex;align-items:flex-start;gap:clamp(.75rem,2vw,2rem);width:var(--w,100%)}
+.piece{flex:var(--g) 1 0;min-width:0;margin-top:var(--o,0);cursor:pointer}
+.frame{position:relative;aspect-ratio:var(--r);overflow:hidden;border:1px solid rgba(191,195,206,.8);background:#100f18}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.001);transition:transform 2.2s var(--ease)}
+.frame.missing img{display:none}
+.frame.missing{background:
+  linear-gradient(calc(var(--h)*1deg),rgba(168,155,203,.16),transparent 55%),
+  repeating-linear-gradient(calc(var(--h)*1deg + 90deg),transparent 0 38px,rgba(236,230,216,.05) 38px 39px),#131117}
+.cap{position:absolute;inset:auto 0 0 0;padding:4rem 1.4rem 1.3rem;background:linear-gradient(transparent,rgba(10,9,12,.88));opacity:0;transform:translateY(10px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.cap small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--lav)}
+.cap h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.25rem,2vw,1.7rem);line-height:1.2;margin:.2rem 0 .25rem}
+.cap time{font-size:.75rem;color:var(--mute)}
+.piece:hover img,.piece:focus-visible img{transform:scale(1.06) translate(-.6%,-.6%)}
+.piece:hover .cap,.piece:focus-visible .cap,.piece.lit .cap{opacity:1;transform:none}
+.piece.lit .frame{border-color:var(--lav)}
+.frame{transition:border-color 1s var(--ease)}
+.tag{display:flex;justify-content:space-between;margin-top:.7rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+@media (hover:none){.cap{opacity:1;transform:none}}
+
+.balls{position:fixed;inset:0;width:100%;height:100%;z-index:45;pointer-events:none}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr auto;align-items:start;gap:clamp(2rem,8vw,9rem);padding:clamp(5rem,14vh,10rem) var(--pad);border-top:1px solid var(--line);margin:0 var(--pad);padding-left:0;padding-right:0}
+.about h2{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,5vw,4.5rem);line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+.about h2 em{font-style:normal;color:var(--purple)}
+.about-text{max-width:32rem;justify-self:end}
+.about-text p{font-family:var(--serif);font-size:clamp(.95rem,1.25vw,1.12rem);line-height:1.7;color:#cfc9bb;margin-bottom:1.3rem}
+.about-text p:last-child{color:var(--ink);margin:0}
+
+.portrait{width:clamp(9rem,13vw,12rem)}
+.portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 22%;border:1px solid rgba(191,195,206,.8);filter:grayscale(.3) brightness(.9);transition:filter 1.2s var(--ease)}
+.portrait:hover img{filter:none}
+.portrait.missing img{display:none}
+.portrait.missing::before{content:"";display:block;aspect-ratio:4/5;border:1px solid var(--line);background:linear-gradient(160deg,rgba(168,155,203,.16),transparent 60%),#131117}
+.portrait figcaption{margin-top:.6rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+
+/* footer */
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:2.5rem var(--pad) 3rem;border-top:1px solid var(--line);margin:0 var(--pad);padding-left:0;padding-right:0;font-size:clamp(1rem,1.5vw,1.25rem);font-family:var(--serif);letter-spacing:.01em;color:var(--mute)}
+.foot a{transition:color .5s}.foot a:hover{color:var(--lav)}
+
+/* tablet / mobile */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;align-content:end;gap:3rem}
+  .hero-side{justify-self:start;text-align:left;max-width:32rem}
+  .about{grid-template-columns:1fr}
+  .about-text{justify-self:start}
+  .portrait{justify-self:start}
+}
+@media (max-width:720px){
+  .gallery{gap:4rem}
+  .row{flex-direction:column;width:100%!important;gap:4rem}
+  .piece{flex:none;width:88%;margin-top:0!important}
+  .piece.alt{align-self:flex-end;width:76%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <span>Angel</span>
+</header>
+
+<main>
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-line" aria-hidden="true">
+      <span class="stroke"></span>
+      <span class="brush-track">
+        <svg class="brush" viewBox="0 0 64 20" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(64 0) scale(-1 1)">
+            <path d="M2 8.6Q2 7 4 7L34 8.3V11.7L4 13Q2 13 2 11.4Z" fill="#c9a96e"/>
+            <rect x="34" y="7.4" width="10" height="5.2" rx="1" fill="#bfc3ce"/>
+            <path d="M37 7.4V12.6M40 7.4V12.6" stroke="#6b6f7a" stroke-width=".6"/>
+            <path d="M44 7.6C52 6.4 58 8.4 63.5 10C58 11.6 52 13.6 44 12.4Z" fill="#a89bcb"/>
+            <path d="M55 8.6C58 8.8 61 9.4 63.5 10C60 10.7 57 11.3 54 11.5Z" fill="#7b62c9"/>
+          </g>
+        </svg>
+      </span>
+    </div>
+    <h1 class="hero-title" aria-label="Angles of Angel">
+      <span class="mask"><span>Angles</span></span>
+      <span class="mask"><span>of</span></span>
+      <span class="mask"><span>Angel</span></span>
+    </h1>
+    <div class="hero-side">
+      <h2>The <em>Museum</em> of <em>Angels</em></h2>
+      <p>My world, from different angles — A small museum of my work in different mediums and one shared point of view.</p>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery" aria-label="The collection"></section>
+
+  <section id="about" class="about">
+    <h2>Behind the <em>Angles</em></h2>
+    <div class="about-text">
+      <p>I'm Angel, and I make things in whatever medium the idea asks for.</p>
+      <p>Every piece is an angle on how I see the world, and together they're the closest thing I have to a self-portrait.</p>
+    </div>
+    <figure class="portrait">
+      <img src="images/angelgupta.png" alt="Portrait of Angel" onerror="this.parentNode.classList.add('missing')">
+      <figcaption>Angel Gupta</figcaption>
+    </figure>
+  </section>
+</main>
+
+<footer class="foot">
+  <a href="mailto:angelguptaindia@gmail.com">angelguptaindia@gmail.com</a>
+  <span>© 2026 Angel</span>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT YOUR ARTWORKS HERE
+   id      – archive number shown in the hover caption as "ANGLE 01.0"
+   label   – the text shown UNDER each picture (type whatever you like)
+   title   – creative title
+   date    – month + year (or just a year)
+   src     – image path (drop your files into /images)
+   ratio   – the image's own width / height. Frames hug each image exactly; every row shares one height
+   offset  – optional vertical offset for the staggered look
+   ============================================================ */
+const artworks = [
+  { id:"01.0", label:"The Witness Angle", title:"Eye of the Beholder", date:"February 2023", src:"images/eyes.png", ratio:"879 / 736", offset:"0" },
+  { id:"02.0", label:"The Embroidery Angle", title:"Hanging by a Thread", date:"October 2025", src:"images/embroidery.png", ratio:"769 / 423", offset:"10vh" },
+  { id:"03.0", label:"The Shadow Angle", title:"Dance Like Nobody's Shading", date:"December 2025", src:"images/sketchmain2.png", ratio:"480 / 650", offset:"4vh" },
+  { id:"04.0", label:"The Aurora Angle", title:"Under the Northern Lights", date:"September 2018", src:"images/northernlights.png", ratio:"1019 / 475", offset:"0" },
+  { id:"05.0", label:"The Passion Angle", title:"Eyes on the Ball", date:"November 2025", src:"images/viratkohli.png", ratio:"534 / 716", offset:"10vh" },
+  { id:"06.0", label:"The Contrast Angle", title:"Sky's Not the Limit", date:"December 2025", src:"images/colourtheory.png", ratio:"498 / 701", offset:"4vh" },
+  { id:"07.0", label:"The Metamorphosis Angle", title:"Butterflies in My Stitches", date:"May 2025", src:"images/butterfly.png", ratio:"770 / 769", offset:"0" },
+  { id:"08.0", label:"The Nature Angle", title:"The Grass Isn't Always Greener", date:"March 2024", src:"images/seasons.png", ratio:"518 / 554", offset:"10vh" },
+  { id:"09.0", label:"The Wizard Angle", title:"Home Is Where Hogwarts Is", date:"January 2023", src:"images/harrypotter.png", ratio:"859 / 628", offset:"4vh" },
+  { id:"10.0", label:"The Style Angle", title:"Coco Before Charcoal", date:"December 2025", src:"images/sketchmain.png", ratio:"490 / 656", offset:"0" },
+  { id:"11.0", label:"The Wednesday Angle", title:"Opposites Attract", date:"December 2022", src:"images/wednesday.png", ratio:"839 / 592", offset:"10vh" },
+  { id:"12.0", label:"The Street Angle", title:"The Devil Wears Cargo", date:"June 2026", src:"images/singlegsketch.png", ratio:"317 / 711", offset:"4vh" },
+  { id:"13.0", label:"The Pose Angle", title:"Strike a Pose", date:"May 2026", src:"images/2girlssketch.png", ratio:"459 / 711", offset:"0" },
+  { id:"14.0", label:"The Anatomy Angle", title:"Rome Wasn't Drawn in a Day", date:"November 2025", src:"images/humanfigsketch.png", ratio:"536 / 748", offset:"10vh" },
+  { id:"15.0", label:"The Perspective Angle", title:"Think Outside the Box", date:"November 2025", src:"images/3dobjects.png", ratio:"542 / 747", offset:"0" },
+  { id:"16.0", label:"The Chabutra Angle", title:"Birds of a Feather", date:"December 2025", src:"images/chabutra.png", ratio:"495 / 712", offset:"10vh" }
+];
+
+const gallery = document.getElementById("gallery");
+const ROWS = [3, 3, 3, 3, 2, 2];   // artworks per row, in order (extra artworks fall into rows of 3)
+const FULL_ROW = 3.6;     // sum of ratios that fills a full-width row
+
+for (let r = 0, ri = 0; r < artworks.length; r += ROWS[ri++] || 3) {
+  const group = artworks.slice(r, r + (ROWS[ri] || 3));
+  const nums = group.map(a => { const [w, h] = a.ratio.split("/").map(Number); return w / h; });
+  const sum = nums.reduce((x, y) => x + y, 0);
+
+  const row = document.createElement("div");
+  row.className = "row";
+  row.style.setProperty("--w", Math.min(1, sum / FULL_ROW) * 100 + "%"); // short rows stay the same height
+  gallery.appendChild(row);
+
+  group.forEach((a, k) => {
+    const i = r + k;
+    const el = document.createElement("figure");
+    el.className = "piece" + (i % 2 ? " alt" : "");
+    el.tabIndex = 0;
+    el.style.setProperty("--g", nums[k]);
+    el.style.setProperty("--r", a.ratio);
+    el.style.setProperty("--o", a.offset || "0");
+    el.innerHTML = `
+      <div class="frame" style="--h:${(i * 37) % 180}">
+        <img src="${a.src}" alt="${a.title}, ${a.date}" loading="lazy">
+        <figcaption class="cap">
+          <small>ANGLE ${a.id}</small>
+          <h3>${a.title}</h3>
+          <time>${a.date}</time>
+        </figcaption>
+      </div>
+      <div class="tag" aria-hidden="true"><span>${a.label}</span><span>${a.date.split(" ").pop()}</span></div>`;
+
+    // No image yet? Show a quiet placeholder instead of a broken icon.
+    const frame = el.querySelector(".frame");
+    el.querySelector("img").addEventListener("error", () => frame.classList.add("missing"));
+
+    // Click = subtle "lit" state. Artwork never leaves the gallery.
+    el.addEventListener("click", () => el.classList.toggle("lit"));
+    el.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.classList.toggle("lit"); }
+    });
+
+    row.appendChild(el);
+  });
+}
+
+/* Intro: tiny purple, black, silver and light-blue balls bounce on every load */
+(function(){
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const c = document.createElement("canvas");
+  c.className = "balls";
+  document.body.appendChild(c);
+  const ctx = c.getContext("2d"), dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let W, H;
+  const size = () => { W = innerWidth; H = innerHeight; c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
+  size(); addEventListener("resize", size);
+  const palette = [["#d9ccff","#7b62c9"],["#34303f","#000000"],["#ffffff","#9aa0ad"],["#d4ecff","#6fa6d6"]];
+  const balls = Array.from({ length: W < 700 ? 36 : 64 }, (_, i) => ({
+    x: Math.random() * W, y: -20 - Math.random() * H * .4,
+    vx: (Math.random() - .5) * 360, vy: Math.random() * 120,
+    r: 3 + Math.random() * 5, col: palette[i % 4], delay: Math.random() * 900
+  }));
+  const G = 1500, BOUNCE = .74, FADE_AT = 4300, END = 5400;
+  const t0 = performance.now(); let last = t0;
+  (function frame(now){
+    const t = now - t0, dt = Math.min((now - last) / 1000, .033); last = now;
+    if (t > END) { c.remove(); return; }
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalAlpha = t > FADE_AT ? 1 - (t - FADE_AT) / (END - FADE_AT) : 1;
+    for (const b of balls) {
+      if (t < b.delay) continue;
+      b.vy += G * dt; b.x += b.vx * dt; b.y += b.vy * dt;
+      if (b.y + b.r > H) { b.y = H - b.r; b.vy *= -BOUNCE; b.vx *= .985; }
+      if (b.x < b.r) { b.x = b.r; b.vx *= -1; }
+      if (b.x > W - b.r) { b.x = W - b.r; b.vx *= -1; }
+      const g = ctx.createRadialGradient(b.x - b.r*.3, b.y - b.r*.3, b.r*.1, b.x, b.y, b.r);
+      g.addColorStop(0, b.col[0]); g.addColorStop(1, b.col[1]);
+      ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, 6.2832); ctx.fillStyle = g; ctx.fill();
+      ctx.strokeStyle = "rgba(236,230,216,.22)"; ctx.lineWidth = .6; ctx.stroke();
+    }
+    requestAnimationFrame(frame);
+  })(t0);
+})();
+</script>
+</body>
+</html>
